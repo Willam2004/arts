@@ -43,3 +43,32 @@ func searchInsert(nums []int, target int) int {
     return 0
 }
 ```
+二分法
+```
+func searchInsert(nums []int, target int) int {
+    if(nums[0] > target ){
+        return 0
+    }
+    if(nums[len(nums) -1] < target){
+        return len(nums)
+    }
+    var l int = 0
+    var r int = len(nums) - 1
+    var index int = 0
+    for l <= r {
+        var mid = l + (r -l) /2 
+        if(nums[mid] == target){
+            index = mid
+            break
+        }else if(target > nums[mid]){
+            l = mid + 1
+            if(nums[mid +1] > target){
+                index = mid + 1
+            }
+        }else{
+            r = mid -1
+        }
+    }
+    return index
+}
+```
